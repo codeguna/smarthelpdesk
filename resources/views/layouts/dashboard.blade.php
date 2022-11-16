@@ -147,7 +147,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 made with ☕ to help your productivity
             </div>
             <!-- Default to the left -->
-            <strong>Copyright <a href="https://www.linkedin.com/in/gunadhip/" target="_blank"> Guna.P</a> &copy;
+            <strong>Copyright <a href="https://www.linkedin.com/in/gunadhip/" target="_blank">
+                    {{ env('APP_AUTHOR') }}</a> &copy;
                 {{ date('Y') }} </strong> All
             rights
             reserved.
