@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Jakarta',
 
     /*
      |--------------------------------------------------------------------------
@@ -76,8 +76,8 @@ return [
      |
      */
 
-     'date_format' => 'Y-m-d',
-     'date_format_js' => 'yy-mm-dd',
+    'date_format' => 'm-d-Y',
+    'date_format_js' => 'dd-mm-yy',
 
     /*
     |--------------------------------------------------------------------------
@@ -182,7 +182,7 @@ return [
         Laravel\Tinker\TinkerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        
+
         /*
          * Application Service Providers...
          */
@@ -247,7 +247,7 @@ return [
         'Image'        => Intervention\Image\Facades\Image::class,
         'Form'         => Collective\Html\FormFacade::class,
         'Html'         => Collective\Html\HtmlFacade::class,
-        
+
     ],
 
 ];

@@ -9,7 +9,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Core | Home</title>
-
+    <!-- DataTable -->
+    <link rel="stylesheet" href="{{ asset('adminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -17,6 +20,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset('adminLTE/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('adminLTE/dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -89,7 +93,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="#" class="brand-link">
                 <img src="{{ asset('adminLTE/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
+                <span class="brand-text font-weight-light">{{ env('APP_NAME') }}</span>
             </a>
 
             <!-- Sidebar -->
@@ -101,52 +105,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
+                        <a href="#" class="d-block">{{ Auth::User()->name }}</a>
                     </div>
                 </div>
 
                 <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-                        <li class="nav-item">
-                            <a href="#"
-                                class="nav-link {{ request()->is('admin/home') || request()->is('admin/home/*') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Dashboard
-                                    <span class="right badge badge-danger">+1</span>
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item menu-open">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Starter Pages
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Active Page</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Inactive Page</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                </nav>
+                @include('partials.menuLTE')
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
@@ -158,14 +122,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0">Starter Page</h1>
-                        </div><!-- /.col -->
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Welcome</li>
-                            </ol>
+                        <div class="col-sm-12">
+                            <h1 class="m-0">
+                                @yield('title')
+                            </h1>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
@@ -193,16 +153,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
             reserved.
         </footer>
     </div>
+    <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
+        {{ csrf_field() }}
+    </form>
     <!-- ./wrapper -->
-
-    <!-- REQUIRED SCRIPTS -->
-
     <!-- jQuery -->
     <script src="{{ asset('adminLTE/plugins/jquery/jquery.min.js') }}"></script>
+    <!-- REQUIRED SCRIPTS -->
+    <script src="{{ asset('adminLTE/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('adminLTE/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('adminLTE/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('adminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('adminLTE/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('adminLTE/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+
     <!-- Bootstrap 4 -->
     <script src="{{ asset('adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('adminLTE/dist/js/adminlte.min.js') }}"></script>
+    @yield('scripts')
 </body>
 
 </html>
