@@ -2,6 +2,7 @@
 @section('title')
     Create Permissions
 @endsection
+
 @section('content')
     <div class="card">
         <div class="card-header">
